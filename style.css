@@ -1,0 +1,378 @@
+:root{
+  --border-menu-color: #80949F;
+  --background-main: #F8F8F8;
+  --input-button: #B8FFEC;
+  --read-more: #41F6D7;
+  --text-color: #1B1C21;
+  --text-color-thin:#7E7E82;
+  --border-inline: #D9FFF5;
+  --line-color: #EAEAEA;
+}
+
+@font-face {
+  font-family: 'TT Lakes Condensed', sans-serif;
+  src: url('/assets/img/fonts/TTLakesCompressed-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body{
+  font-family: 'TT Lakes Condensed', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  background-color: var(--background-main);
+  color: var(--text-color);
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+*,::after,::before {
+  box-sizing: inherit;
+}
+
+/* Стилизация H1 и его полосы */
+h1{
+  font-size: 28px;
+  font-weight: bold;
+  position: relative;
+  /* Базовый отступ для текста, чтобы он не накладывался на полосу */
+  padding: 24px 16px 24px 32px; /* Top, Right, Bottom, Left */
+  margin: 0;
+}
+h1::before {
+  content: '';
+  position: absolute;
+  left: 0; /* Прижимаем полосу к левому краю h1 (и, следовательно, родителя без padding-left) */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 40px;
+  background-color:var(--read-more);
+  border-radius: 0 4px 4px 0;
+  display: block; /* По умолчанию видна на всех размерах */
+}
+
+.header {
+  background-color: #FFF;
+  border-bottom: 1px solid var(--border-inline);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 88px;
+  padding: 0 16px;
+}
+
+.header__nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-grow: 1;
+  gap: 16px;
+}
+
+/* Базовые стили для ВСЕХ кнопок header__button */
+.header__button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  white-space: nowrap; /* Важно, чтобы текст не переносился внутри кнопки */
+}
+
+/* СКРЫТЫЕ ЭЛЕМЕНТЫ ПО УМОЛЧАНИЮ */
+.button--hide, /* Кнопки звонка, обращения, профиля */
+/* .tabs__link--hide,  -- УДАЛЕНО, так как табы теперь всегда видимы */
+.service-card__additional, /* Дополнительный текст */
+.main-header-actions /* Десктопные кнопки */ {
+  display: none;
+}
+/* Скрываем кнопки "Оставить заявку" и "Статус ремонта" в header__nav на больших экранах */
+.header__button--desktop-hide {
+    display: flex; /* По умолчанию видимы на мобильных */
+}
+
+.button__text {
+  display: none; /* Текст кнопок скрыт по умолчанию */
+  font-family: inherit;
+  font-weight: 500;
+}
+
+/* НОВЫЙ КОНТЕЙНЕР ДЛЯ ЗАГОЛОВКА И КНОПОК РЕМОНТА/ПОИСКА */
+.main-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Левый padding 0, чтобы h1 (а значит и его::before) примыкал к краю экрана */
+  padding: 24px 16px 24px 0; /* Верх, Право, Низ, Лево */
+}
+
+
+/* ДЕКОРАТИВНЫЕ ВЕРТИКАЛЬНЫЕ ПОЛОСЫ */
+
+/* Полоса слева от ЛОГОТИПА */
+.header__logo {
+  position: relative;
+  padding-left: 0;
+}
+.header__logo::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 32px;
+  background-color: var(--line-color);
+  display: none; /* Скрыта по умолчанию (<784px) */
+}
+
+/* Полоса слева от кнопки "Раздел ремонта" (в старой навигации до 1121px) */
+.header__nav .header__button--desktop-hide[aria-label="Раздел ремонта"] {
+  position: relative;
+  padding-left: 16px; /* Отступ для полосы */
+}
+.header__nav .header__button--desktop-hide[aria-label="Раздел ремонта"]::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 32px;
+  background-color: var(--line-color);
+  display: block; /* Видима по умолчанию (<1121px) */
+}
+
+/* Стили для табов */
+.tabs__link--active{
+  color: var(--text-color-thin);
+  text-decoration: none;
+  border:2px solid var(--input-button) !important;
+  border-radius: 6px;
+}
+
+.tabs__link{
+  color: var(--text-color-thin);
+  border:2px solid transparent;
+  border-radius: 6px;
+  text-decoration: none;
+  padding: 5px;
+  cursor:pointer;
+}
+
+.tabs__link:hover{
+  border:2px solid var(--input-button);
+}
+.tabs__link:active{
+  border:2px solid var(--input-button);
+}
+
+.tabs__list {
+  display: flex;
+  white-space: nowrap; /* Предотвращает перенос текста на новую строку */
+  overflow-x: auto; /* Появится скролл, если табы не помещаются */
+  -webkit-overflow-scrolling: touch;
+  gap: 16px;
+  padding: 5px 10px;
+}
+
+/* Стили для service-card (основной текстовый блок + изображение) */
+.service-card {
+  display: block; /* По умолчанию (мобильные) - изображение под текстом */
+  padding: 16px;
+}
+.service-card__content {
+  margin-bottom: 16px;
+}
+.service-card__image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0; /* Сброс на всякий случай */
+  margin: 0; /* Сброс на всякий случай */
+}
+
+/* ========================================================================= */
+/* МЕДИА-ЗАПРОСЫ                                */
+/* ========================================================================= */
+
+/* Для экранов от 784px и шире */
+@media (min-width: 784px) {
+  /* Передвигаем header__nav кнопку звонка вправо */
+  .header__nav button[aria-label="Раздел звонка"] {
+      margin-left: auto;
+  }
+  /* Делаем видимыми скрытые кнопки в header__nav */
+  .button--hide {
+    display: flex;
+  }
+  /* Делаем видимой полосу у логотипа */
+  .header__logo {
+    padding-left: 16px; /* Отступ для полосы */
+  }
+  .header__logo::before {
+    display: block;
+  }
+
+  /* Текст кнопок "Оставить заявку" и "Статус ремонта" становится видимым */
+  /* Эти кнопки находятся в header__nav на 784px */
+  .header__nav .header__button--desktop-hide .button__text {
+      display: inline-block;
+      margin-right: 8px;
+  }
+
+  /* Вкладки: отступ для табов */
+  .tabs__list {
+      padding: 5px 24px; /* Изменение отступа для табов */
+  }
+
+  /* service-card: текст слева, изображение справа */
+  .service-card {
+    display: flex; /* Делаем service-card flex-контейнером */
+    align-items: flex-start; /* Выравнивание по верху */
+    gap: 36px; /* Отступ между текстовым блоком и изображением (312 + 36 + 360 = 708, общий 768) */
+    padding: 24px; /* Общие отступы для всего блока service-card */
+  }
+  .service-card__content {
+    flex-basis: 312px; /* Фиксированная ширина для текстового блока */
+    flex-shrink: 0; /* Не сжимается */
+    margin-bottom: 0; /* Убираем нижний отступ */
+  }
+  .service-card__description {
+      /* Для текстового блока 312x160px, но абзацы не имеют фиксированной высоты */
+      max-height: 160px; /* Примерная высота, чтобы вместить текст */
+      overflow: hidden; /* Обрезаем, если текст не помещается */
+  }
+  .service-card__image {
+    flex-shrink: 0; /* Не сжимается */
+    width: 360px; /* Ширина изображения */
+    height: 260px; /* Высота изображения */
+    object-fit: cover; /* Обрезает изображение, чтобы оно помещалось в заданные размеры */
+    border-radius: 0 0 0 6px; /* Закругление в левом нижнем углу */
+    margin-top: auto; /* Для выравнивания по вертикали */
+    margin-bottom: auto; /* Для выравнивания по вертикали */
+    align-self: center; /* Выравнивание по центру по вертикали внутри flex-контейнера */
+  }
+  /* Дополнительный абзац в service-card становится видимым */
+  .service-card__additional {
+    display: block; /* Видим на 784px */
+  }
+}
+
+
+/* Для экранов от 1121px и шире */
+@media (min-width: 1121px) {
+  /* --- Скрываем стандартный заголовок и навигацию --- */
+  .header {
+    display: none; /* Скрываем весь старый заголовок */
+  }
+  /* Скрываем кнопки "Оставить заявку" и "Статус ремонта" из header__nav */
+  .header__button--desktop-hide {
+      display: none;
+  }
+
+  /* --- Показываем новый блок заголовка и кнопок --- */
+  .main-page-header {
+    display: flex; /* Делаем видимым */
+    min-height: 88px; /* Задаем высоту */
+    border-bottom: 1px solid var(--border-inline); /* Добавляем нижнюю границу */
+    background-color: #FFF;
+    /* ИЗМЕНЕНИЕ: padding-left убран, чтобы h1::before примыкал к краю экрана */
+    padding: 0 32px 0 0; /* Top, Right, Bottom, Left */
+  }
+
+  .main-page-header h1 {
+    /* ИЗМЕНЕНИЕ: Добавляем padding-left для текста h1, чтобы он не накладывался на полосу,
+       которая будет на left:0 относительно h1. */
+    padding: 0 0 0 32px;
+    margin: 0;
+  }
+  .main-page-header h1::before {
+    /* Полоса h1 теперь видна на больших разрешениях, как и запрошено */
+    display: block;
+  }
+
+  /* Скрываем навигационное меню полностью (оно больше не нужно, т.к. header скрыт) */
+  .header__nav {
+      display: none;
+  }
+
+  /* Показываем контейнер с кнопками ремонта и поиска */
+  .main-header-actions {
+    display: flex; /* ВАЖНО: Делаем контейнер с кнопками видимым и flex */
+    align-items: center;
+    gap: 16px;
+    flex-direction: row; /* Явно горизонтально */
+    flex-wrap: nowrap; /* Запрещаем перенос */
+  }
+
+  /* Текст кнопок "Оставить заявку" и "Статус ремонта" становится видимым */
+  .button__text {
+    display: inline-block;
+    margin-right: 8px;
+  }
+
+  /* --- Убираем полосы --- */
+  /* Полоса у логотипа скрыта от 1121px */
+  .header__logo::before {
+    display: none;
+  }
+  .header__logo {
+    padding-left: 0;
+  }
+
+  /* Полоса у кнопки "Раздел ремонта" (в новом блоке) скрыта */
+  .main-header-actions .header__button[aria-label="Оставить заявку"]::before {
+      display: none;
+  }
+  .main-header-actions .header__button[aria-label="Оставить заявку"] {
+      padding-left: 0;
+  }
+  /* Сброс margin-left: auto для кнопки звонка, так как она скрыта */
+  .header__nav button[aria-label="Раздел звонка"] {
+    margin-left: 0;
+  }
+
+
+  /* --- ИЗМЕНЕНИЯ В ОСНОВНОМ КОНТЕНТЕ (текст + изображение) --- */
+  .service-card {
+    display: flex; /* Делаем service-card flex-контейнером */
+    align-items: flex-start; /* Выравнивание по верху */
+    gap: 32px; /* Отступ между текстовым блоком и изображением */
+    padding: 24px 32px; /* Отступы для всего контентного блока */
+  }
+  .service-card__content {
+    flex-basis: 490px; /* Ширина текстового блока */
+    flex-shrink: 0; /* Не сжимается */
+    margin-bottom: 0; /* Убираем нижний отступ */
+  }
+  .service-card__description {
+      /* Убираем жесткую высоту, чтобы весь текст вместился */
+      max-height: none;
+      overflow: visible;
+  }
+  .service-card__image {
+    flex-shrink: 0; /* Не сжимается */
+    width: 530px; /* Ширина изображения */
+    height: 300px; /* Высота изображения */
+    object-fit: cover; /* Обрезает изображение, чтобы оно помещалось в заданные размеры */
+    border-radius: 0 0 0 6px; /* Закругление в левом нижнем углу */
+    margin: 0; /* Убираем auto margin, так как align-items: flex-start */
+  }
+
+
+  /* Для табов */
+  .tabs__list {
+    flex-wrap: wrap; /* Разрешаем перенос элементов на новую строку */
+    justify-content: flex-start;
+    padding: 0 32px; /* Увеличим отступы */
+    margin-top: 8px; /* Отступ между заголовком и табами */
+  }
+  .tabs__link {
+      margin-bottom: 8px; /* Отступ между рядами табов при переносе */
+  }
+}
