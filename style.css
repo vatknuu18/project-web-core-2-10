@@ -8,47 +8,39 @@
   --border-inline: #D9FFF5;
   --line-color: #EAEAEA;
 }
-
 @font-face {
-  font-family: 'TT Lakes Condensed', sans-serif;
-  src: url('/assets/img/fonts/TTLakesCondensed-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'TT Lakes Compressed';
+    src: url('/assets/img/fonts/TTLakesCompressed-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
 }
-
 @font-face {
-  font-family: 'TT Lakes Condensed', sans-serif;
-  src: url('/assets/img/fonts/TTLakesCondensed-Bold.ttf') format('truetype');
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'TT Lakes Condensed', sans-serif;
-  src: url('/assets/img/fonts/TTLakesCondensed-Medium.ttf') format('truetype');
-  font-weight: 500;
-  font-style: normal;
-}
-
-
-@font-face {
-    font-family: 'TT Lakes Condensed';
-    src: url('/assets/img/fonts/TTLakesCondensed-Light.ttf') format('truetype');
-    font-weight: 300;
+    font-family: 'TT Lakes ';
+    src: url('/assets/img/fonts/TTLakes-Medium.ttf') format('truetype');
+    font-weight: 500;
     font-style: normal;
 }
 
-
 @font-face {
-    font-family: 'TT Lakes Compressed';
-    src: url('/assets/img/fonts/TTLakesCompressed-ExtraBoldItalic.ttf') format('truetype');
-    font-weight: 800;
-    font-style: italic;
+    font-family: 'TT Lakes';
+    src: url('/assets/img/fonts/TTLakes-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
 }
 
+@font-face {
+    font-family: 'TT Lakes ';
+    src: url('/assets/img/fonts/TTLakes-DemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+html {
+  box-sizing: border-box;
+}
 
 body{
-  font-family: 'TT Lakes Condensed', sans-serif;
+  font-family: 'TT Lakes Compressed ', sans-serif;
   margin: 0;
   padding: 0;
   font-size: 16px;
@@ -58,17 +50,18 @@ body{
   overflow-x: hidden;
 }
 
-*,::after,::before {
+*::before {
   box-sizing: inherit;
 }
 
 /* Стилизация H1 и его полосы - */
 h1{
   font-size: 28px;
-  font-weight: 800;
+  font-weight: 700;
+  font-style: normal;
   font-family: 'TT Lakes Compressed';
   position: relative;
-  padding: 24px 16px 24px 32px; 
+  padding: 24px 16px; 
   margin: 0;
 }
 h1::before {
@@ -81,7 +74,7 @@ h1::before {
   height: 40px;
   background-color:var(--read-more);
   border-radius: 0 4px 4px 0;
-  display: block; /* Полоса h1 всегда видна, не меняется медиа-запросами */
+  display: block;
 }
 
 .header {
@@ -125,15 +118,20 @@ h1::before {
   display: none; 
 }
 
+.service-card__hidden{
+display:none;
+}
+
 .main-header-actions {
   display: none; /* Скрыт по умолчанию до 1121px */
 }
 
 /* Текст кнопок скрыт по умолчанию (для кнопок в шапке) */
 .button__text {
+  font-family: 'TT Lakes ';
   display: none;
   font-size: 16px;
-  font-weight: 700;
+  font-weight:500 ;
 }
 
 /* НОВЫЙ КОНТЕЙНЕР ДЛЯ ЗАГОЛОВКА И КНОПОК РЕМОНТА/ПОИСКА (десктоп) */
@@ -141,7 +139,6 @@ h1::before {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 16px 24px 0;
 }
 
 
@@ -164,10 +161,9 @@ h1::before {
   display: none; /* Скрыта по умолчанию (<784px) */
 }
 
-/* Полоса слева от кнопки "Ремонт" - должна быть всегда до 1121px */
 .header__button--repair {
     position: relative; 
-    padding-left: 0; /* Отступ будет задан в медиа-запросах */
+    padding-left: 0; 
 }
 .header__button--repair::before {
     content: '';
@@ -178,7 +174,7 @@ h1::before {
     width: 2px;
     height: 32px;
     background-color: var(--line-color);
-    display: none; /* По умолчанию скрыта, будет показана в медиа-запросах */
+    display: none;
 }
 
 
@@ -192,12 +188,13 @@ h1::before {
 
 .tabs__link{
   color: var(--text-color-thin);
-  font-weight: 400;
+  font-weight: 500;
+  font-family:'TT Lakes ';
   font-size: 16px;
   border:2px solid transparent;
   border-radius: 6px;
   text-decoration: none;
-  padding: 9px;
+  padding:0.88vh;
   cursor:pointer;
 }
 
@@ -211,7 +208,8 @@ h1::before {
 .tabs__list {
   display: flex;
   white-space: nowrap;
-  overflow-x: auto;
+  /* overflow-x: auto; */
+  overflow-x:none;
   -webkit-overflow-scrolling: touch;
   gap: 16px;
   padding: 5px 10px;
@@ -223,17 +221,12 @@ h1::before {
   padding: 16px;
 }
 .service-card__content {
-  margin-bottom: 16px;
-}
-
-.service-card__description{
-  font-size :16px;
-  font-weight: 300;
+  font-family:'TT Lakes';
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .service-card__additional {
-  font-weight: 300;
-  font-size: 16px;
   display: none;
   }
 
@@ -242,12 +235,15 @@ h1::before {
   align-items: center;
   gap: 8px;
   text-decoration: none;
-  font-weight: 700;
+  font-family: 'TT Lakes';
+  font-weight: 600 ;
+  font-size: 16px;
+  padding-bottom:16px;
   color: var(--text-color);
 }
 
 .service-card__expand {
-  height: 1em;
+  height: 24px;
   width: auto;
 }
 
@@ -258,9 +254,8 @@ h1::before {
   margin: 0;
 }
 
-/* ========================================================================= */
-/* МЕДИА-ЗАПРОСЫ                                */
-/* ========================================================================= */
+
+/* МЕДИА-ЗАПРОСЫ */
 
 /* Для экранов от 320px до 783px (мобильные) */
 @media (max-width: 783px) {
@@ -269,6 +264,15 @@ h1::before {
     margin-left: auto;
     padding-left: 16px; /* Добавляем паддинг для полосы */
   }
+.service-card {
+    padding: 16px 0; 
+  }
+
+.service-card__content {
+      padding-left: 16px;
+      padding-right: 16px;
+  }
+
   .header__button--repair::before {
       display: block; /* Показываем полосу у ремонта на мобильных */
   }
@@ -285,6 +289,13 @@ h1::before {
   .header__nav .header__button--call {
       margin-left: auto; 
   }
+
+ h1{
+  padding: 24px 0 32px 24px
+ }
+ h1::before{
+  top:45%
+ }
 
   /* Делаем видимыми кнопки звонка, обращения, профиля */
   .header__button--hidden-mobile {
@@ -331,9 +342,9 @@ h1::before {
   .service-card__image {
     flex-shrink: 0;
     width: 360px;
-    height: 260px;
+    height: 208px;
     object-fit: cover;
-    border-radius: 0 0 0 6px;
+    border-radius: 6px;
     margin-top: auto;
     margin-bottom: auto;
     align-self: center;
@@ -350,22 +361,23 @@ h1::before {
   .header {
     display: none;
   }
-
   /* --- показ новый блок заголовка и кнопок --- */
   .main-page-header {
     display: flex;
     min-height: 88px;
-    border-bottom: 1px solid var(--border-inline);
-    background-color: #FFF;
-    padding: 0 32px 0 0;
+    background-color: var(--background-main);
+    align-items: flex-start;
   }
 
   .main-page-header h1 {
-    padding: 0 0 0 32px;
+    padding-left:32px;
+    padding-top: 42px;
+    padding-bottom: 8px;
     margin: 0;
   }
   .main-page-header h1::before {
     display: block; /* Полоса h1 видна на десктопе */
+    top:60px;
   }
 
   /* Показываем контейнер с десктопными кнопками ремонта и поиска */
@@ -375,12 +387,17 @@ h1::before {
     gap: 16px;
     flex-direction: row;
     flex-wrap: nowrap;
+    padding-right: 32px;
+    padding-top: 42px;
+    
   }
 
   /* Текст десктопных кнопок становится видимым */
   .main-header-actions .button__text {
     display: inline-block;
     margin-right: 8px;
+    
+    
   }
 
   /* Убираю все элементы и полосы, которые были в мобильной/планшетной шапке */
@@ -403,7 +420,10 @@ h1::before {
     display: flex;
     align-items: flex-start;
     gap: 32px;
-    padding: 24px 32px;
+    padding: 12px 32px;
+  }
+.service-card__hidden{
+    display:inline;
   }
   .service-card__content {
     flex-basis: 490px;
@@ -415,14 +435,18 @@ h1::before {
       overflow: visible;
   }
   .service-card__additional{
-    display:flex;
+    display:inline;
   }
+.service-card__link {
+    padding-top: 14px;
+}
+
   .service-card__image {
     flex-shrink: 0;
     width: 530px;
     height: 300px;
     object-fit: cover;
-    border-radius: 0 0 0 6px;
+    border-radius:6px;
     margin: 0;
   }
 
@@ -431,9 +455,5 @@ h1::before {
     flex-wrap: wrap;
     justify-content: flex-start;
     padding: 0 32px;
-    margin-top: 8px;
-  }
-  .tabs__link {
-      margin-bottom: 8px;
   }
 }
