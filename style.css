@@ -9,27 +9,27 @@
   --line-color: #EAEAEA;
 }
 @font-face {
-    font-family: 'TT Lakes Compressed';
+    font-family:'TT Lakes Compressed';
     src: url('/assets/img/fonts/TTLakesCompressed-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 @font-face {
-    font-family: 'TT Lakes ';
+    font-family:'TT Lakes';
     src: url('/assets/img/fonts/TTLakes-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'TT Lakes';
+    font-family:'TT Lakes';
     src: url('/assets/img/fonts/TTLakes-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'TT Lakes ';
+    font-family:'TT Lakes';
     src: url('/assets/img/fonts/TTLakes-DemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
@@ -40,7 +40,7 @@ html {
 }
 
 body{
-  font-family: 'TT Lakes Compressed ', sans-serif;
+  font-family: 'TT Lakes Compressed', sans-serif;
   margin: 0;
   padding: 0;
   font-size: 16px;
@@ -128,7 +128,7 @@ display:none;
 
 /* Текст кнопок скрыт по умолчанию (для кнопок в шапке) */
 .button__text {
-  font-family: 'TT Lakes ';
+  font-family: 'TT Lakes';
   display: none;
   font-size: 16px;
   font-weight:500 ;
@@ -189,7 +189,7 @@ display:none;
 .tabs__link{
   color: var(--text-color-thin);
   font-weight: 500;
-  font-family:'TT Lakes ';
+  font-family:'TT Lakes';
   font-size: 16px;
   border:2px solid transparent;
   border-radius: 6px;
@@ -269,8 +269,7 @@ display:none;
   }
 
 .service-card__content {
-      padding-left: 16px;
-      padding-right: 16px;
+  padding: 0 16px;
   }
 
   .header__button--repair::before {
@@ -345,8 +344,7 @@ display:none;
     height: 208px;
     object-fit: cover;
     border-radius: 6px;
-    margin-top: auto;
-    margin-bottom: auto;
+    margin: auto;
     align-self: center;
   }
   .service-card__additional {
@@ -370,9 +368,7 @@ display:none;
   }
 
   .main-page-header h1 {
-    padding-left:32px;
-    padding-top: 42px;
-    padding-bottom: 8px;
+    padding: 42px 16px 8px 32px;
     margin: 0;
   }
   .main-page-header h1::before {
@@ -387,8 +383,8 @@ display:none;
     gap: 16px;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding-right: 32px;
-    padding-top: 42px;
+    padding: 42px 32px;
+    
     
   }
 
